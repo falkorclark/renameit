@@ -16,9 +16,7 @@ function main()
     })
     .help('help', 'show help and exit')
     .version('version', 'show version and exit', version)
-    .alias({
-      'help': ['h', '?'],
-    })
+    .alias({ help: ['h', '?'] })
     .command(new RenameMeCommand)
     .scriptName(name)
     .parse();

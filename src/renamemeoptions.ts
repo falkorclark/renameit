@@ -123,16 +123,16 @@ export const RenameMeYargs:Record<string, yargs.Options> = {
  * Default options and their values
  */
 export const DefaultOptions:Required<RenameMeOptions> = {
-    path: '.',
-    name: false,
-    suffix: false,
-    lower: false,
-    upper: false,
-    recurse: false,
-    git: false,
-    color: true,
-    verbose: false,
-    quiet: false,
-    dryRun: false,
-    cli: false,
-  };
+  path: '.',
+  name: false,
+  suffix: false,
+  lower: false,
+  upper: false,
+  recurse: false,
+  git: false,
+  color: true,
+  verbose: false,
+  quiet: false,
+  dryRun: false,
+  cli: false,
+};

@@ -6,6 +6,8 @@ import fs from 'fs-extra';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
+export * from './renamemeoptions';
+
 export default class RenameMe
 {
   /**
@@ -19,7 +21,7 @@ export default class RenameMe
   /**
    * Options passed to {@link RenameMe}
    */
-  private _options:Required<RenameMeOptions> = DefaultOptions;
+  private _options:Required<RenameMeOptions> = {...DefaultOptions};
 
   public constructor(options?:RenameMeOptions)
   {
@@ -36,7 +38,7 @@ export default class RenameMe
   public set options(options:RenameMeOptions)
   {
     // reset options
-    this._options = DefaultOptions;
+    this._options = {...DefaultOptions};
     // set the options that were given
     for (const [key, value] of Object.entries(options)) 
       (this._options as any)[key] = value;
