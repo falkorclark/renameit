@@ -4,13 +4,16 @@
 
 ## Installation
 
-```bash
+```sh
 npm install renameme
 # or
 yarn add renameme
 # or
 pnpm add renameme
 ```
+
+RenameMe also provides a command line interface (CLI) that can be installed
+globally by passing the `-g` flag when installing.
 
 ## Inspiration
 
@@ -23,3 +26,56 @@ lower-case. This mostly stems from cameras and the common behavior of saving
 file names with all upper-case extensions. Although, Windows does not care,
 Linux does, and so does any photo libraries like Google Photos. Therefore,
 I wrote this script to make the batch renaming of files quick and easy.
+
+## Usage
+
+RenameMe provides a coding interface as well as a CLI. The most common use case
+is the CLI. Once you have installed RenameMe, you can execute the script and get
+help with the options available by typing `renameme help` in a command prompt.
+
+The following is an example of renaming all extensions within the current
+working directory to lower-case:
+
+```sh
+renameme --path . --suffix --lower
+```
+
+In code:
+
+```ts
+// import the library
+import RenameMe from 'renameme';
+
+// create the object and pass options
+const batch = new RenameMe({
+  path: '.',
+  suffix: true,
+  lower: true
+});
+// execute the renaming
+batch.rename();
+```
+
+Adding the `--recurse` option will tell RenameMe to traverse subdirectories
+as well:
+
+```sh
+renameme --path . --suffix --lower --recurse
+```
+
+In code:
+
+```ts
+// import the library
+import RenameMe from 'renameme';
+
+// create the object and pass options
+const batch = new RenameMe({
+  path: '.',
+  suffix: true,
+  lower: true,
+  recurse: true,
+});
+// execute the renaming
+batch.rename();
+```
