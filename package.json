@@ -1,7 +1,11 @@
 {
   "name": "renameme",
   "version": "1.0.0",
-  "description": "Batch file/folder renaming utility",
+  "description": "Batch file renaming utility",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/falkorclark/renameme.git"
+  },
   "bin": {
     "renameme": "lib/bin/cli.js"
   },
@@ -23,6 +27,16 @@
   },
   "author": "Falkor Clark <falkorclark@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "batch",
+    "file",
+    "rename",
+    "batch rename",
+    "file rename"
+  ],
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@stylistic/eslint-plugin": "^5.2.2",

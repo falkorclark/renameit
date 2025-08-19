@@ -54,12 +54,6 @@ export default class RenameMe
       this._options.name = true;
     }
 
-    // disable output
-    if (this.options.quiet)
-    {
-      console.log = () => {};
-      console.warn = () => {};
-    }
     // enable/disable console colors
     if (this.options.color) colors.enable();
     else colors.disable();
