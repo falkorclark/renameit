@@ -31,6 +31,10 @@ export interface RenameMeOptions
    */
   recurse?:boolean,
   /**
+   * if true, performs rename using git command
+   */
+  git?:boolean,
+  /**
    * If true, console output will be colored, else it will not
    */
   color?:boolean,
@@ -87,6 +91,11 @@ export const RenameMeYargs:Record<string, yargs.Options> = {
     type: 'boolean',
     describe: 'recurse subdirectories',
   },
+  git: {
+    alias: ['g'],
+    type: 'boolean',
+    describe: 'performs rename with `git mv` command',
+  },
   color: {
     alias: ['c'],
     describe: 'console output will be colored',
@@ -109,3 +118,21 @@ export const RenameMeYargs:Record<string, yargs.Options> = {
     type: 'boolean',
   },
 };
+
+/**
+ * Default options and their values
+ */
+export const DefaultOptions:Required<RenameMeOptions> = {
+    path: '.',
+    name: false,
+    suffix: false,
+    lower: false,
+    upper: false,
+    recurse: false,
+    git: false,
+    color: true,
+    verbose: false,
+    quiet: false,
+    dryRun: false,
+    cli: false,
+  };

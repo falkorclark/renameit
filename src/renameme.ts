@@ -1,8 +1,9 @@
 
 import { version, name } from '../package.json';
-import { RenameMeOptions } from './renamemeoptions';
+import { DefaultOptions, RenameMeOptions } from './renamemeoptions';
 import colors from 'colors';
 import fs from 'fs-extra';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
 export default class RenameMe
@@ -18,19 +19,7 @@ export default class RenameMe
   /**
    * Options passed to {@link RenameMe}
    */
-  private _options:Required<RenameMeOptions> = {
-    path: '.',
-    name: false,
-    suffix: false,
-    lower: false,
-    upper: false,
-    recurse: false,
-    color: true,
-    verbose: false,
-    quiet: false,
-    dryRun: false,
-    cli: false,
-  };
+  private _options:Required<RenameMeOptions> = DefaultOptions;
 
   public constructor(options?:RenameMeOptions)
   {
@@ -46,17 +35,12 @@ export default class RenameMe
    */
   public set options(options:RenameMeOptions)
   {
-    this._options.path = options.path;
-    this._options.name = options.name ?? false;
-    this._options.suffix = options.suffix ?? false;
-    this._options.lower = options.lower ?? false;
-    this._options.upper = options.upper ?? false;
-    this._options.recurse = options.recurse ?? false;
-    this._options.color = options.color ?? true;
-    this._options.verbose = options.verbose ?? false;
-    this._options.quiet = options.quiet ?? false;
-    this._options.dryRun = options.dryRun ?? false;
-    this._options.cli = options.cli ?? this._options.cli;
+    // reset options
+    this._options = DefaultOptions;
+    // set the options that were given
+    for (const [key, value] of Object.entries(options)) 
+      (this._options as any)[key] = value;
+
     // update option for dry run
     if (this.options.dryRun)
     {
@@ -165,14 +149,27 @@ export default class RenameMe
     // print the verbose message
     if (this.options.verbose)
     {
-      console.log('%s [%s] %s',
+      console.log('%s %s[%s] %s',
         diff ? colors.green('Rename:') : colors.green('No Change:'),
+        this.options.git ? 'git mv ' : '',
         colors.yellow(file),
         diff ? `-> [${colors.yellow(newName)}]` : '',
       );
     }
 
     // execute the rename
-    if (diff && !this.options.dryRun) fs.renameSync(file, newName);
+    if (diff && !this.options.dryRun)
+    {
+      if (this.options.git)
+      {
+        const result = spawnSync(
+          'git', ['mv', file, newName],
+          {shell:true, encoding:'utf8'}
+        );
+        if (result.stdout) console.log(result.stdout);
+        if (result.stderr) console.error(result.stderr);
+      }
+      else fs.renameSync(file, newName);
+    }
   }
 }
