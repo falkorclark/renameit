@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
-import RenameMe, { RenameMeOptions, RenameMeYargs } from '../renameme';
+import RenameIt, { RenameItOptions, RenameItYargs } from '../renameit';
 import colors from 'colors';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs';
 import { version } from '../../package.json';
 
-interface Options extends RenameMeOptions
+interface Options extends RenameItOptions
 {
   tests: string[],
 }
 
-type TestFunc = (batch:RenameMe, options:Options) => void;
+type TestFunc = (batch:RenameIt, options:Options) => void;
 
 async function main()
 {
@@ -34,7 +34,7 @@ async function main()
     .version('version', 'show version and exit', version)
     .alias({ help: ['h', '?'] })
     .options({
-      ...RenameMeYargs,
+      ...RenameItYargs,
       tests: {
         alias: ['t'],
         describe: 'list of tests to include',
@@ -50,7 +50,7 @@ async function main()
     args.dryRun = true;
     args.path = './src';
 
-    const batch = new RenameMe();
+    const batch = new RenameIt();
     for (const test of args.tests)
     {
       console.group(colors.magenta('Testing:'), test);
@@ -67,30 +67,30 @@ async function main()
 
 /**
  * Tests upper suffix in src
- * @param batch the {@link RenameMe} instance
+ * @param batch the {@link RenameIt} instance
  * @param args the cli arguments
  */
-function suffixToUpper(batch:RenameMe, args:Options)
+function suffixToUpper(batch:RenameIt, args:Options)
 {
   batch.rename({...args, upper: true, suffix: true});
 }
 
 /**
  * Tests upper name in src
- * @param batch the {@link RenameMe} instance
+ * @param batch the {@link RenameIt} instance
  * @param args the cli arguments
  */
-function nameToUpper(batch:RenameMe, args:Options)
+function nameToUpper(batch:RenameIt, args:Options)
 {
   batch.rename({...args, upper: true, name: true});
 }
 
 /**
  * Tests upper name in src
- * @param batch the {@link RenameMe} instance
+ * @param batch the {@link RenameIt} instance
  * @param args the cli arguments
  */
-function fullToUpper(batch:RenameMe, args:Options)
+function fullToUpper(batch:RenameIt, args:Options)
 {
   batch.rename({...args, upper: true});
 }

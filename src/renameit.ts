@@ -1,14 +1,14 @@
 
 import { version, name } from '../package.json';
-import { DefaultOptions, RenameMeOptions } from './renamemeoptions';
+import { DefaultOptions, RenameItOptions } from './renameitoptions';
 import colors from 'colors';
 import fs from 'fs-extra';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
-export * from './renamemeoptions';
+export * from './renameitoptions';
 
-export default class RenameMe
+export default class RenameIt
 {
   /**
    * The version of Markugen
@@ -19,11 +19,11 @@ export default class RenameMe
    */
   public static readonly name:string = name;
   /**
-   * Options passed to {@link RenameMe}
+   * Options passed to {@link RenameIt}
    */
-  private _options:Required<RenameMeOptions> = {...DefaultOptions};
+  private _options:Required<RenameItOptions> = {...DefaultOptions};
 
-  public constructor(options?:RenameMeOptions)
+  public constructor(options?:RenameItOptions)
   {
     if (options) this.options = options;
   }
@@ -35,7 +35,7 @@ export default class RenameMe
   /**
    * Sets the configuration options
    */
-  public set options(options:RenameMeOptions)
+  public set options(options:RenameItOptions)
   {
     // reset options
     this._options = {...DefaultOptions};
@@ -62,10 +62,10 @@ export default class RenameMe
   }
 
   /**
-   * Performs the renaming with the current {@link RenameMeOptions} or the 
+   * Performs the renaming with the current {@link RenameItOptions} or the 
    * given options.
    */
-  public rename(options?:RenameMeOptions)
+  public rename(options?:RenameItOptions)
   {
     if (options) this.options = options;
     if (!fs.existsSync(this.options.path))
@@ -82,9 +82,9 @@ export default class RenameMe
   /**
    * Static version of {@link rename}
    */
-  public static renameMe(options?:RenameMeOptions)
+  public static renameMe(options?:RenameItOptions)
   {
-    new RenameMe(options).rename();
+    new RenameIt(options).rename();
   }
 
   /**

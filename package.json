@@ -1,19 +1,19 @@
 {
-  "name": "renameme",
+  "name": "renameit",
   "version": "1.0.0",
-  "description": "Batch file renaming utility",
+  "description": "Cross-platform batch file renaming utility",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/falkorclark/renameme.git"
+    "url": "git+https://github.com/falkorclark/renameit.git"
   },
   "bin": {
-    "renameme": "lib/bin/cli.js"
+    "renameit": "lib/bin/cli.js"
   },
-  "module": "./lib/renameme.js",
-  "main": "./lib/renameme.js",
-  "types": "./lib/renameme.d.ts",
+  "module": "./lib/renameit.js",
+  "main": "./lib/renameit.js",
+  "types": "./lib/renameit.d.ts",
   "exports": {
-    ".": "./lib/renameme.js",
+    ".": "./lib/renameit.js",
     "./lib/*.js": "./lib/*.js",
     "./package.json": "./package.json"
   },

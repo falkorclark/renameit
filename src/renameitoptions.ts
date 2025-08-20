@@ -2,9 +2,9 @@
 import yargs from 'yargs';
 
 /**
- * RenameMe configuration options
+ * RenameIt configuration options
  */
-export interface RenameMeOptions
+export interface RenameItOptions
 {
   /**
    * the file path to rename or a directory path to rename all files within
@@ -39,11 +39,11 @@ export interface RenameMeOptions
    */
   color?:boolean,
   /**
-   * If true, RenameMe will print all renames
+   * If true, RenameIt will print all renames
    */
   verbose?:boolean,
   /**
-   * If true, RenameMe will silence its output
+   * If true, RenameIt will silence its output
    */
   quiet?:boolean,
   /**
@@ -51,7 +51,7 @@ export interface RenameMeOptions
    */
   dryRun?:boolean,
   /**
-   * Used internally to tell RenameMe if it was executed from the cli or not
+   * Used internally to tell RenameIt if it was executed from the cli or not
    */
   cli?:boolean,
 }
@@ -59,7 +59,7 @@ export interface RenameMeOptions
 /**
  * Defined yargs arguments for the CLI
  */
-export const RenameMeYargs:Record<string, yargs.Options> = {
+export const RenameItYargs:Record<string, yargs.Options> = {
   path: {
     alias: ['p'],
     type: 'string',
@@ -122,7 +122,7 @@ export const RenameMeYargs:Record<string, yargs.Options> = {
 /**
  * Default options and their values
  */
-export const DefaultOptions:Required<RenameMeOptions> = {
+export const DefaultOptions:Required<RenameItOptions> = {
   path: '.',
   name: false,
   suffix: false,

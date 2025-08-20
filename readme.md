@@ -1,18 +1,18 @@
-# RenameMe
+# RenameIt
 
-> Batch file renaming utility
+> Cross-platform batch file renaming utility
 
 ## Installation
 
 ```sh
-npm install renameme
+npm install renameit
 # or
-yarn add renameme
+yarn add renameit
 # or
-pnpm add renameme
+pnpm add renameit
 ```
 
-RenameMe also provides a command line interface (CLI) that can be installed
+RenameIt also provides a command line interface (CLI) that can be installed
 globally by passing the `-g` flag when installing.
 
 ## Inspiration
@@ -29,25 +29,25 @@ I wrote this script to make the batch renaming of files quick and easy.
 
 ## Usage
 
-RenameMe provides a coding interface as well as a CLI. The most common use case
-is the CLI. Once you have installed RenameMe, you can execute the script and get
-help with the options available by typing `renameme help` in a command prompt.
+RenameIt provides a coding interface as well as a CLI. The most common use case
+is the CLI. Once you have installed RenameIt, you can execute the script and get
+help with the options available by typing `renameit help` in a command prompt.
 
 The following is an example of renaming all extensions within the current
 working directory to lower-case:
 
 ```sh
-renameme --path . --suffix --lower
+renameit --path . --suffix --lower
 ```
 
 In code:
 
 ```ts
 // import the library
-import RenameMe from 'renameme';
+import RenameIt from 'renameit';
 
 // create the object and pass options
-const batch = new RenameMe({
+const batch = new RenameIt({
   path: '.',
   suffix: true,
   lower: true
@@ -56,21 +56,21 @@ const batch = new RenameMe({
 batch.rename();
 ```
 
-Adding the `--recurse` option will tell RenameMe to traverse subdirectories
+Adding the `--recurse` option will tell RenameIt to traverse subdirectories
 as well:
 
 ```sh
-renameme --path . --suffix --lower --recurse
+renameit --path . --suffix --lower --recurse
 ```
 
 In code:
 
 ```ts
 // import the library
-import RenameMe from 'renameme';
+import RenameIt from 'renameit';
 
 // create the object and pass options
-const batch = new RenameMe({
+const batch = new RenameIt({
   path: '.',
   suffix: true,
   lower: true,

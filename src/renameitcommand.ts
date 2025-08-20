@@ -1,19 +1,19 @@
 
 import { CommandModule, Argv, ArgumentsCamelCase } from 'yargs';
-import { RenameMeYargs, RenameMeOptions } from './renamemeoptions';
-import RenameMe from './renameme';
+import { RenameItYargs, RenameItOptions } from './renameitoptions';
+import RenameIt from './renameit';
 
 /**
  * Command object for the CLI
  */
-export default class RenameMeCommand<U extends RenameMeOptions> implements CommandModule<object, U> 
+export default class RenameItCommand<U extends RenameItOptions> implements CommandModule<object, U> 
 {
   public command = ['$0'];
   public describe = 'Batch renaming of files';
 
   public builder(args:Argv): Argv<U> 
   {
-    args.options(RenameMeYargs)
+    args.options(RenameItYargs)
       .conflicts('lower', 'upper')
       .conflicts('quiet', 'verbose')
       .implies('dry-run', 'verbose');
@@ -23,11 +23,11 @@ export default class RenameMeCommand<U extends RenameMeOptions> implements Comma
   public handler(args:ArgumentsCamelCase<U>)
   {
     // create the markugen instance
-    let renameme = undefined;
+    let renameit = undefined;
     try 
     {
-      renameme = new RenameMe({...args, cli: true});
-      renameme.rename();
+      renameit = new RenameIt({...args, cli: true});
+      renameit.rename();
     }
     catch (e:any)
     { 
