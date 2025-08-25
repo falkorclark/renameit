@@ -17,12 +17,13 @@ type TestFunc = (batch:RenameIt, options:Options) => void;
 async function main()
 {
   const tests:Record<string, TestFunc> = {
-    's2u': suffixToUpper,
-    's2ur': (batch, args) => suffixToUpper(batch, {...args, recurse: true}),
-    'n2u': nameToUpper,
-    'n2ur': (batch, args) => nameToUpper(batch, {...args, recurse: true}),
-    'f2u': fullToUpper,
-    'f2ur': (batch, args) => fullToUpper(batch, {...args, recurse: true}),
+    s2u: suffixToUpper,
+    s2ur: (batch, args) => suffixToUpper(batch, {...args, recurse: true}),
+    n2u: nameToUpper,
+    n2ur: (batch, args) => nameToUpper(batch, {...args, recurse: true}),
+    f2u: fullToUpper,
+    f2ur: (batch, args) => fullToUpper(batch, {...args, recurse: true}),
+    regex: regexToUpper,
   };
 
   const args = yargs(hideBin(process.argv))
@@ -94,6 +95,16 @@ function nameToUpper(batch:RenameIt, args:Options)
 function fullToUpper(batch:RenameIt, args:Options)
 {
   batch.rename({...args, upper: true});
+}
+
+/**
+ * Tests upper name in src with regex
+ * @param batch the {@link RenameIt} instance
+ * @param args the cli arguments
+ */
+function regexToUpper(batch:RenameIt, args:Options)
+{
+  batch.rename({...args, upper: true, recurse: true, regex: /d\.ts/});
 }
 
 main();

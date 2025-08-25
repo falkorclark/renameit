@@ -6,7 +6,7 @@
  */
 export function stringToRegex(str:string) 
 {
-  const match = str.match(/^([\/~@;%#'])(.*?)\1([gimsuy]*)$/);
+  const match = str.match(/^([/~@;%#'])(.*?)\1([gimsuy]*)$/);
   if (match)
   {
     return new RegExp(

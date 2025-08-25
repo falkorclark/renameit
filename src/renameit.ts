@@ -61,7 +61,7 @@ export default class RenameIt
       this._options.name = true;
     }
     // update the regular expression
-    if (this.options.regex) this._regex = stringToRegex(this.options.regex);
+    if (this.options.regex) this._regex = stringToRegex(this.options.regex.toString());
     else this._regex = undefined;
 
     // enable/disable console colors

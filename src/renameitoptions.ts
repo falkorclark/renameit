@@ -27,7 +27,7 @@ export interface RenameItOptions
   /**
    * Regular expression pattern to use for matching files and folders.
    */
-  regex?:string,
+  regex?:string|RegExp,
   /**
    * When combined with --regex causes it to be an exclusion rule
    */
