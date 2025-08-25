@@ -1,10 +1,11 @@
 
 import { version, name } from '../package.json';
-import { DefaultOptions, RenameItOptions } from './renameitoptions';
+import { RenameItOptions, DefaultOptions } from './renameitoptions';
 import colors from 'colors';
 import fs from 'fs-extra';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
+import { stringToRegex } from './utils';
 
 export * from './renameitoptions';
 
@@ -22,6 +23,10 @@ export default class RenameIt
    * Options passed to {@link RenameIt}
    */
   private _options:Required<RenameItOptions> = {...DefaultOptions};
+  /**
+   * Compiled regular expression if given one
+   */
+  private _regex?:RegExp = undefined;
 
   public constructor(options?:RenameItOptions)
   {
@@ -31,11 +36,11 @@ export default class RenameIt
   /**
    * @returns the current configuration options
    */
-  public get options() { return this._options; }
+  private get options() { return this._options; }
   /**
    * Sets the configuration options
    */
-  public set options(options:RenameItOptions)
+  private set options(options:RenameItOptions)
   {
     // reset options
     this._options = {...DefaultOptions};
@@ -44,17 +49,20 @@ export default class RenameIt
       (this._options as any)[key] = value;
 
     // update option for dry run
-    if (this.options.dryRun)
+    if (this._options.dryRun)
     {
       this._options.quiet = false;
       this._options.verbose = true;
     }
     // update options for no parts given
-    if (!this.options.suffix && !this.options.name)
+    if (!this._options.suffix && !this._options.name)
     {
       this._options.suffix = true;
       this._options.name = true;
     }
+    // update the regular expression
+    if (this._options.regex) this._regex = stringToRegex(this._options.regex.toString());
+    else this._regex = undefined;
 
     // enable/disable console colors
     if (this.options.color) colors.enable();
@@ -62,12 +70,10 @@ export default class RenameIt
   }
 
   /**
-   * Performs the renaming with the current {@link RenameItOptions} or the 
-   * given options.
+   * Performs the renaming with the current {@link RenameItOptions}
    */
-  public rename(options?:RenameItOptions)
+  public rename()
   {
-    if (options) this.options = options;
     if (!fs.existsSync(this.options.path))
     {
       console.error(
@@ -82,7 +88,7 @@ export default class RenameIt
   /**
    * Static version of {@link rename}
    */
-  public static renameMe(options?:RenameItOptions)
+  public static renameIt(options?:RenameItOptions)
   {
     new RenameIt(options).rename();
   }
@@ -117,11 +123,16 @@ export default class RenameIt
    */
   private renameFile(file:string)
   {
-    const parts = path.parse(file);
+    // skip if no match
+    if (this._regex)
+    {
+      const match = file.match(this._regex);
+      if ((!match && !this.options.exclude) || (match && this.options.exclude)) return;
+    }
 
+    const parts = path.parse(file);
     // handle the file name
     let newName = parts.name;
-
     // handle the name
     if (this.options.name)
     {
@@ -134,6 +145,7 @@ export default class RenameIt
     {
       if (this.options.lower) newName += parts.ext.toLowerCase();
       else if (this.options.upper) newName += parts.ext.toUpperCase();
+      else newName += parts.ext;
     }
     else newName += parts.ext;
 
