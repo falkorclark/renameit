@@ -5,6 +5,7 @@ import colors from 'colors';
 import fs from 'fs-extra';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
+import { stringToRegex } from './utils';
 
 export * from './renameitoptions';
 
@@ -22,6 +23,10 @@ export default class RenameIt
    * Options passed to {@link RenameIt}
    */
   private _options:Required<RenameItOptions> = {...DefaultOptions};
+  /**
+   * Compiled regular expression if given one
+   */
+  private _regex?:RegExp = undefined;
 
   public constructor(options?:RenameItOptions)
   {
@@ -55,6 +60,9 @@ export default class RenameIt
       this._options.suffix = true;
       this._options.name = true;
     }
+    // update the regular expression
+    if (this.options.regex) this._regex = stringToRegex(this.options.regex);
+    else this._regex = undefined;
 
     // enable/disable console colors
     if (this.options.color) colors.enable();
@@ -82,7 +90,7 @@ export default class RenameIt
   /**
    * Static version of {@link rename}
    */
-  public static renameMe(options?:RenameItOptions)
+  public static renameIt(options?:RenameItOptions)
   {
     new RenameIt(options).rename();
   }
@@ -117,11 +125,16 @@ export default class RenameIt
    */
   private renameFile(file:string)
   {
-    const parts = path.parse(file);
+    // skip if no match
+    if (this._regex)
+    {
+      const match = file.match(this._regex);
+      if ((!match && !this.options.exclude) || (match && this.options.exclude)) return;
+    }
 
+    const parts = path.parse(file);
     // handle the file name
     let newName = parts.name;
-
     // handle the name
     if (this.options.name)
     {
@@ -134,6 +147,7 @@ export default class RenameIt
     {
       if (this.options.lower) newName += parts.ext.toLowerCase();
       else if (this.options.upper) newName += parts.ext.toUpperCase();
+      else newName += parts.ext;
     }
     else newName += parts.ext;
 

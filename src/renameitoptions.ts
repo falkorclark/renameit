@@ -27,6 +27,14 @@ export interface RenameItOptions
    */
   upper?:boolean,
   /**
+   * Regular expression pattern to use for matching files and folders.
+   */
+  regex?:string,
+  /**
+   * When combined with --regex causes it to be an exclusion rule
+   */
+  exclude?:boolean,
+  /**
    * if true, directories will be recursed
    */
   recurse?:boolean,
@@ -72,7 +80,7 @@ export const RenameItYargs:Record<string, yargs.Options> = {
     describe: 'renames the name of the file',
   },
   suffix: {
-    alias: ['s', 'x', 'exts'],
+    alias: ['s', 'exts'],
     type: 'boolean',
     describe: 'renames the suffix/extension of the file',
   },
@@ -85,6 +93,16 @@ export const RenameItYargs:Record<string, yargs.Options> = {
     alias: ['uc', 'u'],
     type: 'boolean',
     describe: 'convert to upper-case',
+  },
+  regex: {
+    alias: ['m', 'match', 're'],
+    type: 'string',
+    describe: 'regular expression used to match files and folders',
+  },
+  exclude: {
+    alias: ['x'],
+    type: 'boolean',
+    describe: 'when combined with --regex causes it to be an exclusion rule',
   },
   recurse: {
     alias: ['r'],
@@ -128,6 +146,8 @@ export const DefaultOptions:Required<RenameItOptions> = {
   suffix: false,
   lower: false,
   upper: false,
+  regex: '',
+  exclude: false,
   recurse: false,
   git: false,
   color: true,
