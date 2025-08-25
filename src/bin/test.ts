@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import RenameIt, { RenameItOptions, RenameItYargs } from '../renameit';
+import RenameIt, { RenameItOptions } from '../renameit';
+import { RenameItYargs } from '../renameitcommand';
 import colors from 'colors';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs';

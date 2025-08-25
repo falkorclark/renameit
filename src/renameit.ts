@@ -1,6 +1,6 @@
 
 import { version, name } from '../package.json';
-import { DefaultOptions, RenameItOptions } from './renameitoptions';
+import { RenameItOptions, DefaultOptions } from './renameitoptions';
 import colors from 'colors';
 import fs from 'fs-extra';
 import { spawnSync } from 'node:child_process';

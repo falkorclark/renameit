@@ -1,11 +1,12 @@
 {
   "name": "renameit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cross-platform batch file renaming utility",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/falkorclark/renameit.git"
   },
+  "homepage": "https://falkorclark.com/renameit/index.html",
   "bin": {
     "renameit": "lib/bin/cli.js"
   },
@@ -18,7 +19,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "lib"
+    "lib",
+    "docs"
   ],
   "scripts": {
     "start": "node --import tsx src/bin/cli.ts",
@@ -45,6 +47,7 @@
     "@types/node": "^24.2.0",
     "@types/yargs": "^17.0.33",
     "eslint": "^9.32.0",
+    "markugen": "^2.0.5",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.39.0"

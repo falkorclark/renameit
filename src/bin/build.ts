@@ -2,6 +2,8 @@
 
 import { spawnSync } from 'node:child_process';
 import fs from 'fs-extra';
+import Markugen from 'markugen';
+import { version } from '../../package.json';
 
 function main()
 {
@@ -14,13 +16,13 @@ function main()
  */
 function docs()
 {
-  // const mark = new Markugen();
-  // mark.mdtohtml({
-  //   input: 'markdown',
-  //   output: 'docs',
-  //   assets: ['examples'],
-  //   clearOutput: true,
-  // });
+  const mark = new Markugen();
+  mark.mdtohtml({
+    title: `RenameIt v${version}`,
+    input: 'markdown',
+    output: 'docs',
+    clearOutput: true,
+  });
 }
 
 /**
