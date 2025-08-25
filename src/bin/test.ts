@@ -12,17 +12,17 @@ interface Options extends RenameItOptions
   tests: string[],
 }
 
-type TestFunc = (batch:RenameIt, options:Options) => void;
+type TestFunc = (options:Options) => void;
 
 async function main()
 {
   const tests:Record<string, TestFunc> = {
     s2u: suffixToUpper,
-    s2ur: (batch, args) => suffixToUpper(batch, {...args, recurse: true}),
+    s2ur: (args) => suffixToUpper({...args, recurse: true}),
     n2u: nameToUpper,
-    n2ur: (batch, args) => nameToUpper(batch, {...args, recurse: true}),
+    n2ur: (args) => nameToUpper({...args, recurse: true}),
     f2u: fullToUpper,
-    f2ur: (batch, args) => fullToUpper(batch, {...args, recurse: true}),
+    f2ur: (args) => fullToUpper({...args, recurse: true}),
     regex: regexToUpper,
   };
 
@@ -52,11 +52,10 @@ async function main()
     args.dryRun = true;
     args.path = './src';
 
-    const batch = new RenameIt();
     for (const test of args.tests)
     {
       console.group(colors.magenta('Testing:'), test);
-      tests[test](batch, args);
+      tests[test](args);
       console.groupEnd();
     }
   }
@@ -69,42 +68,38 @@ async function main()
 
 /**
  * Tests upper suffix in src
- * @param batch the {@link RenameIt} instance
  * @param args the cli arguments
  */
-function suffixToUpper(batch:RenameIt, args:Options)
+function suffixToUpper(args:Options)
 {
-  batch.rename({...args, upper: true, suffix: true});
+  RenameIt.renameIt({...args, upper: true, suffix: true});
 }
 
 /**
  * Tests upper name in src
- * @param batch the {@link RenameIt} instance
  * @param args the cli arguments
  */
-function nameToUpper(batch:RenameIt, args:Options)
+function nameToUpper(args:Options)
 {
-  batch.rename({...args, upper: true, name: true});
+  RenameIt.renameIt({...args, upper: true, name: true});
 }
 
 /**
  * Tests upper name in src
- * @param batch the {@link RenameIt} instance
  * @param args the cli arguments
  */
-function fullToUpper(batch:RenameIt, args:Options)
+function fullToUpper(args:Options)
 {
-  batch.rename({...args, upper: true});
+  RenameIt.renameIt({...args, upper: true});
 }
 
 /**
  * Tests upper name in src with regex
- * @param batch the {@link RenameIt} instance
  * @param args the cli arguments
  */
-function regexToUpper(batch:RenameIt, args:Options)
+function regexToUpper(args:Options)
 {
-  batch.rename({...args, upper: true, recurse: true, regex: /d\.ts/});
+  RenameIt.renameIt({...args, upper: true, recurse: true, regex: /d\.ts/});
 }
 
 main();

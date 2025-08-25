@@ -36,11 +36,11 @@ export default class RenameIt
   /**
    * @returns the current configuration options
    */
-  public get options() { return this._options; }
+  private get options() { return this._options; }
   /**
    * Sets the configuration options
    */
-  public set options(options:RenameItOptions)
+  private set options(options:RenameItOptions)
   {
     // reset options
     this._options = {...DefaultOptions};
@@ -49,19 +49,19 @@ export default class RenameIt
       (this._options as any)[key] = value;
 
     // update option for dry run
-    if (this.options.dryRun)
+    if (this._options.dryRun)
     {
       this._options.quiet = false;
       this._options.verbose = true;
     }
     // update options for no parts given
-    if (!this.options.suffix && !this.options.name)
+    if (!this._options.suffix && !this._options.name)
     {
       this._options.suffix = true;
       this._options.name = true;
     }
     // update the regular expression
-    if (this.options.regex) this._regex = stringToRegex(this.options.regex.toString());
+    if (this._options.regex) this._regex = stringToRegex(this._options.regex.toString());
     else this._regex = undefined;
 
     // enable/disable console colors
@@ -70,12 +70,10 @@ export default class RenameIt
   }
 
   /**
-   * Performs the renaming with the current {@link RenameItOptions} or the 
-   * given options.
+   * Performs the renaming with the current {@link RenameItOptions}
    */
-  public rename(options?:RenameItOptions)
+  public rename()
   {
-    if (options) this.options = options;
     if (!fs.existsSync(this.options.path))
     {
       console.error(
