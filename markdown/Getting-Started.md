@@ -8,11 +8,11 @@ commands:
 
 :::tabs
 ::tab[npm]
-`npm install renameit`
+`npm install @neverending/renameit`
 ::tab[yarn]
-`yarn add renameit`
+`yarn add @neverending/renameit`
 ::tab[pnpm]
-`pnpm add renameit`
+`pnpm add @neverending/renameit`
 :::
 
 Adding the `--global` option will install RenameIt globally and allow it to
