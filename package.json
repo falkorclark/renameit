@@ -25,8 +25,7 @@
   "scripts": {
     "start": "node --import tsx src/bin/cli.ts",
     "build": "node --import tsx src/bin/build.ts",
-    "test": "npx eslint src --quiet && node --import tsx src/bin/test.ts",
-    "prepublishOnly": "npm run build"
+    "test": "npx eslint src --quiet && node --import tsx src/bin/test.ts"
   },
   "author": "Falkor Clark <falkorclark@gmail.com>",
   "license": "MIT",
