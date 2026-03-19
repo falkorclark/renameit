@@ -25,7 +25,7 @@ jobs:
       - run: npm publish --tag latest
       - name: Create Release Archives
         run: |
-          tar -czvf ${{ github.ref_name }}.tar.gz -C .
+          tar -czvf ${{ github.ref_name }}.tar.gz .
           zip -r ${{ github.ref_name }}.zip ./
       - name: Generate Checksums
         run: sha256sum ${{ github.ref_name }}.tar.gz ${{ github.ref_name }}.zip > checksums.txt
