@@ -9,11 +9,11 @@ be found here
 ## Installation
 
 ```sh
-npm install renameit
+npm install @neverending/renameit
 # or
-yarn add renameit
+yarn add @neverending/renameit
 # or
-pnpm add renameit
+pnpm add @neverending/renameit
 ```
 
 RenameIt also provides a command line interface (CLI) that can be installed
