@@ -1,6 +1,6 @@
 {
-  "name": "renameit",
-  "version": "1.0.1",
+  "name": "@neverending/renameit",
+  "version": "1.0.2",
   "description": "Cross-platform batch file renaming utility",
   "repository": {
     "type": "git",

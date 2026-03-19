@@ -5,13 +5,13 @@ name: NPM Publish
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -22,11 +22,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: npm ci
-      - run: npm publish --public
+      - run: npm publish --provenance --access public
         env:
-          NPM_SECRET: ${{secrets.NPM_TOKEN}}
+          NPM_SECRET: ${{ secrets.NPM_TOKEN }}
