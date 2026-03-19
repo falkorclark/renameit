@@ -18,7 +18,7 @@ export default class RenameIt
   /**
    * The name of Markugen
    */
-  public static readonly name:string = name;
+  public static readonly name:string = name.replace('@neverending/', '');
   /**
    * Options passed to {@link RenameIt}
    */
