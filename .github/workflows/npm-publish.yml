@@ -2,16 +2,16 @@
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
 name: NPM Publish
-on: 
-  push:
-    tags:
-    - 'v*'
+
+on:
+  release:
+    types: [published]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       id-token: write
     steps:
       - uses: actions/checkout@v6
@@ -22,13 +22,4 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build --if-present
-      - run: npm publish --tag latest
-      - name: Create Release Archives
-        run: |
-          tar -czvf ${{ github.ref_name }}.tar.gz .
-          zip -r ${{ github.ref_name }}.zip ./
-      - name: Generate Checksums
-        run: sha256sum ${{ github.ref_name }}.tar.gz ${{ github.ref_name }}.zip > checksums.txt
-      - uses: ncipollo/release-action@v1
-        with:
-          artifacts: "${{ github.ref_name }}.tar.gz,${{ github.ref_name }}.zip,checksums.txt"
+      - run: npm publish
