@@ -22,17 +22,13 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build --if-present
-      - run: npm publish
+      - run: npm publish --tag latest
       - name: Create Release Archives
         run: |
-          # Create tarball for Unix systems
           tar -czvf ${{ github.ref_name }}.tar.gz -C .
-
-          # Create zip for Windows users
           zip -r ${{ github.ref_name }}.zip ./
       - name: Generate Checksums
-        run: |
-          sha256sum ${{ github.ref_name }}.tar.gz ${{ github.ref_name }}.zip > checksums.txt
+        run: sha256sum ${{ github.ref_name }}.tar.gz ${{ github.ref_name }}.zip > checksums.txt
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "${{ github.ref_name }}.tar.gz,${{ github.ref_name }}.zip,checksums.txt"
