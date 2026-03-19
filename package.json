@@ -33,6 +33,9 @@
   "engines": {
     "node": ">=22"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "batch",
     "file",
