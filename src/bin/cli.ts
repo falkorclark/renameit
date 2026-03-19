@@ -2,8 +2,8 @@
 
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs';
-import { name, version } from '../../package.json';
 import RenameItCommand from '../renameitcommand';
+import RenameIt from '../renameit';
 
 // Handle startup
 function main() 
@@ -15,10 +15,10 @@ function main()
       'strip-dashed': true,
     })
     .help('help', 'show help and exit')
-    .version('version', 'show version and exit', version)
+    .version('version', 'show version and exit', RenameIt.version)
     .alias({ help: ['h', '?'] })
     .command(new RenameItCommand)
-    .scriptName(name)
+    .scriptName(RenameIt.name)
     .parse();
 }
 

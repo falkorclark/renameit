@@ -74,7 +74,7 @@ the following example:
 
 ```ts
 // import the library
-import RenameIt from 'renameit';
+import RenameIt from '@neverending/renameit';
 
 // create the object and pass options
 const batch = new RenameIt({

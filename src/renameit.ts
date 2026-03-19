@@ -172,7 +172,7 @@ export default class RenameIt
       {
         const result = spawnSync(
           'git', ['mv', file, newName],
-          {shell:true, encoding:'utf8'}
+          {encoding:'utf8'}
         );
         if (result.stdout) console.log(result.stdout);
         if (result.stderr) console.error(result.stderr);
