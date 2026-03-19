@@ -12,7 +12,7 @@ This example converts all extensions within the `./src` to lower-case:
 ::tab[Code]
 ```ts
 // import the library
-import RenameIt from 'renameit';
+import RenameIt from '@neverending/renameit';
 
 // create the object and pass options
 const batch = new RenameIt({
@@ -41,7 +41,7 @@ This is the same example, but converts the extensions to upper-case:
 ::tab[Code]
 ```ts
 // import the library
-import RenameIt from 'renameit';
+import RenameIt from '@neverending/renameit';
 
 // create the object and pass options
 const batch = new RenameIt({
