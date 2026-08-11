@@ -1,12 +1,12 @@
 {
   "name": "@neverending/renameit",
-  "version": "1.0.8-alpha",
+  "version": "1.0.8",
   "description": "Cross-platform batch file renaming utility",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/falkorclark/renameit.git"
   },
-  "homepage": "https://falkorclark.com/renameit/index.html",
+  "homepage": "https://falkorclark.github.io/renameit/",
   "bin": {
     "renameit": "lib/bin/cli.js"
   },

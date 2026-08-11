@@ -4,7 +4,7 @@
 
 This is a small subset of the documentation; the full set of documentation can 
 be found here 
-[https://falkorclark.com/renameit/index.html](https://falkorclark.com/renameit/index.html).
+[falkorclark.github.io/renameit/](https://falkorclark.github.io/renameit/).
 
 ## Installation
 
