@@ -96,10 +96,9 @@ export default class RenameItCommand<U extends RenameItOptions> implements Comma
   public handler(args:ArgumentsCamelCase<U>)
   {
     // create the markugen instance
-    let renameit = undefined;
     try 
     {
-      renameit = new RenameIt({...args, cli: true});
+      const renameit = new RenameIt({...args, cli: true});
       renameit.rename();
     }
     catch (e:any)

@@ -1,6 +1,6 @@
 {
   "name": "@neverending/renameit",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Cross-platform batch file renaming utility",
   "repository": {
     "type": "git",
@@ -19,8 +19,9 @@
     "./package.json": "./package.json"
   },
   "files": [
+    "docs",
     "lib",
-    "docs"
+    "markdown"
   ],
   "scripts": {
     "start": "node --import tsx src/bin/cli.ts",
@@ -30,7 +31,7 @@
   "author": "Falkor Clark <falkorclark@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "publishConfig": {
     "access": "public"
@@ -43,23 +44,23 @@
     "file rename"
   ],
   "devDependencies": {
-    "@eslint/js": "^9.32.0",
-    "@stylistic/eslint-plugin": "^5.2.2",
+    "@eslint/js": "^10.0.1",
+    "@neverending/markugen": "^2.0.11",
+    "@stylistic/eslint-plugin": "^6.0.1",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^24.2.0",
-    "@types/yargs": "^17.0.33",
-    "eslint": "^9.32.0",
-    "markugen": "^2.0.5",
-    "tsx": "^4.20.3",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.39.0"
+    "@types/node": "^26.6.6",
+    "@types/yargs": "^17.0.35",
+    "eslint": "^10.15.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.73.0"
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "fs-extra": "^11.3.1",
-    "yargs": "^18.0.0"
+    "fs-extra": "^11.4.1",
+    "yargs": "^18.2.0"
   },
   "allowScripts": {
-    "esbuild@0.27.2": true
+    "esbuild@0.28.2": true
   }
 }

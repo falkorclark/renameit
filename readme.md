@@ -8,7 +8,7 @@ be found here
 
 ## Installation
 
-```sh
+```bash
 npm install @neverending/renameit
 # or
 yarn add @neverending/renameit
@@ -40,7 +40,7 @@ help with the options available by typing `renameit help` in a command prompt.
 The following is an example of renaming all extensions within the current
 working directory to lower-case:
 
-```sh
+```bash
 renameit --path . --suffix --lower
 ```
 
@@ -63,7 +63,7 @@ batch.rename();
 Adding the `--recurse` option will tell RenameIt to traverse subdirectories
 as well:
 
-```sh
+```bash
 renameit --path . --suffix --lower --recurse
 ```
 
