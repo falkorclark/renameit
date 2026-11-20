@@ -22,7 +22,7 @@ be executed from anywhere on your machine.
 The options provided to RenameIt are similar on the command line and within
 code. The following sections show the available options in both instances.
 
-## Command Line Interface (CLI)
+## CLI Options
 All available options/arguments can be viewed by executing one of the following
 commands:
 
@@ -38,11 +38,11 @@ renameit -?
 
 The help option will output the following message:
 
-```
-markugen.exec npx renameit help
+```txt
+markugen.exec npm start -s help
 ```
 
-## Code
+## Code Options
 The entire set of options available to the RenameIt class are shown in the below
 code snippet:
 

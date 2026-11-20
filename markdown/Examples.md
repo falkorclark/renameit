@@ -25,13 +25,13 @@ batch.rename();
 ```
 
 ::tab[CLI]
-```sh
+```bash
 renameit --path ./src --suffix --lower
 ```
 
 ::tab[Output]
-```sh
-markugen.exec npx renameit --path ./src --suffix --lower --dry-run
+```bash
+markugen.exec npm start -s -- --path ./src --suffix --lower --dry-run
 ```
 :::
 
@@ -54,13 +54,13 @@ batch.rename();
 ```
 
 ::tab[CLI]
-```sh
+```bash
 renameit --path ./src --suffix --upper
 ```
 
 ::tab[Output]
-```sh
-markugen.exec npx renameit --path ./src --suffix --upper --dry-run
+```bash
+markugen.exec npm start -s -- --path ./src --suffix --upper --dry-run
 ```
 :::
 
@@ -89,12 +89,12 @@ batch.rename();
 
 ::tab[CLI]
 
-```sh
+```bash
 renameit --path ./src --suffix --upper --recurse
 ```
 
 ::tab[Output]
-```sh
-markugen.exec npx renameit --path ./src --suffix --upper --recurse --dry-run
+```bash
+markugen.exec npm start -s -- --path ./src --suffix --upper --recurse --dry-run
 ```
 :::
